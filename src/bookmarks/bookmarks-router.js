@@ -1,8 +1,8 @@
-const express = require('express')
-const uuid = require('uuid/v4')
-const { isWebUri } = require('valid-url')
-const logger = require('../logger')
-const store = require('../store')
+const express = require('express');
+const { v4: uuidv4 } = require('uuid');
+const { isWebUri } = require('valid-url');
+const logger = require('../logger');
+const store = require('../store');
 
 const bookmarksRouter = express.Router()
 const bodyParser = express.json()
@@ -31,7 +31,7 @@ bookmarksRouter
       return res.status(400).send(`'url' must be a valid URL`)
     }
 
-    const bookmark = { id: uuid(), title, url, description, rating }
+    const bookmark = { id: uuidv4(), title, url, description, rating }
 
     store.bookmarks.push(bookmark)
 
